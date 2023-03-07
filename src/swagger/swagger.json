@@ -1,0 +1,507 @@
+
+
+
+  {
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Api Docs - Todo Tasks Social Media App.",
+      "description": "This Application is like a social media app for todo tasks,where user can post their tasks and others can comment on the same, users can view and comment on each others posts.",
+      "contact": {
+        "email": "oborade7@gmail.com"
+      },
+      "license": {
+        "name": "Omkar Borade",
+        "email": "oborade7@gmail.com"
+      },
+      "version": "1.0.0"
+    },
+
+    "servers": [
+      {
+        "url": "http://localhost:3000"
+      }
+    ],
+    "tags": [
+      {
+        "name": "Authentication",
+        "description": "Authentication routes like (login,signup,logout and refresh token)."
+      },
+      {
+        "name": "Users",
+        "description": "All Users Routs for creating a post to updating and marking it as complete or commenting on others posts."
+      }
+    ],
+    "paths": {
+
+        "/users/post": {
+                "post": {
+                  "tags": [
+                    "Users"
+                  ],
+                  "summary": "Route to create a post.",
+                  
+                  "requestBody": {
+                    "in":"body",
+                    "description": "post Title and post Description.",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/post"
+                        }
+                      }
+                      
+                    },
+                    "required": true
+                  }
+            ,
+
+                  "responses": {
+                    "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/res"
+                          }
+                        }
+                      
+                      }
+                  }
+              },
+              "security": [
+                {
+                  "bearerAuth": []
+                }
+              ]
+        },
+        "/users/fetch": {
+              "post": {
+                "tags": [
+                  "Users"
+                ],
+                "summary": "Route to fetch all posts.",
+                "requestBody": {
+                  "description": "",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Authorization"
+                      }
+                    }
+                  } ,
+                  "required": true       
+                },     
+                  "responses": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/res"
+                        }
+                      }
+                    
+                    }
+                  }
+          }
+        },
+        "/users/fetchAll": {
+          "get": {
+            "tags": [
+              "Users"
+            ],
+            "summary": "Route to fetch all posts.", 
+              "responses": {
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/res"
+                    }
+                  }
+                
+                }
+              }
+        }
+        },
+        "/login": {
+          "post": {
+            "tags": [
+              "Authentication"
+            ],
+            "summary": "Route to login users.", 
+
+            "requestBody": {
+              "description": "User credentials ",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/login"
+                  }
+                }
+              } ,
+              "required": true       
+            },
+              "responses": {
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/res"
+                    }
+                  }
+                
+                }
+              }
+        }
+        },
+        "/signup": {
+          "post": {
+            "tags": [
+              "Authentication"
+            ],
+            "summary": "Route to signup users.", 
+
+            "requestBody": {
+              "description": "User data ",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/signup"
+                  }
+                }
+              } ,
+              "required": true       
+            },
+              "responses": {
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/res"
+                    }
+                  }
+                
+                }
+              }
+        }
+        },
+        "/logout": {
+          "post": {
+            "tags": [
+              "Authentication"
+            ],
+            "summary": "Route to logout a users based on access Token.", 
+
+            "requestBody": {
+              "description": "User data ",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Authorization"
+                  }
+                }
+              } ,
+              "required": true       
+            },
+              "responses": {
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/res"
+                    }
+                  }
+                
+                }
+              }
+        }
+        },
+        "/refreshToken": {
+          "post": {
+            "tags": [
+              "Authentication"
+            ],
+            "summary": "Route to get new Token from Refresh.", 
+
+            "requestBody": {
+              "description": "Refresh Token.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Authorization"
+                  }
+                }
+              } ,
+              "required": true       
+            },
+              "responses": {
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/res"
+                    }
+                  }
+                
+                }
+              }
+        }
+        },
+        "/users/updatePosts": {
+          "post": {
+            "tags": [
+              "Users"
+            ],
+            "summary": "Route to update posts", 
+
+            "requestBody": {
+              "description": "User data ",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/updatePosts"
+                  }
+                }
+              } ,
+              "required": true       
+            },
+              "responses": {
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/res"
+                    }
+                  }
+                
+                }
+              }
+        }
+        },
+        "/users/deletePosts": {
+          "post": {
+            "tags": [
+              "Users"
+            ],
+            "summary": "Route to delete a Post.", 
+
+            "requestBody": {
+              "description": "User data ",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/deletePosts"
+                  }
+                }
+              } ,
+              "required": true       
+            },
+              "responses": {
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/res"
+                    }
+                  }
+                
+                }
+              }
+        }
+        },
+        "/users/addComment": {
+          "post": {
+            "tags": [
+              "Users"
+            ],
+            "summary": "Route to Add Comments to posts.", 
+
+            "requestBody": {
+              "description": "User data ",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/addComment"
+                  }
+                }
+              } ,
+              "required": true       
+            },
+              "responses": {
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/res"
+                    }
+                  }
+                
+                }
+              }
+        }
+        }  ,
+        "/users/markComplete": {
+          "post": {
+            "tags": [
+              "Users"
+            ],
+            "summary": "Route to Mark a Post Complete.", 
+
+            "requestBody": {
+              "description": "User data ",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/markComplete"
+                  }
+                }
+              } ,
+              "required": true       
+            },
+              "responses": {
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/res"
+                    }
+                  }
+                
+                }
+              }
+        }
+        }  
+    }
+  ,
+    "components": {
+        "schemas":{
+          "post": {
+            "type": "object",
+            "properties": {
+              "post": {
+                "type": "string",
+                "example": "Learn Node js."
+              },
+              "authorization": {
+                "type": "string",
+                "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9ib3JhZGU3QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoib21rYXIxMjMiLCJpYXQiOjE2NzgxMjM5NTIsImV4cCI6MTcwOTY4MTU1Mn0.aEMcfqvuyozvw7NJV-e6I1u7bMVlNjBaH-QJtq1-9Lc"
+              }
+            }
+          }, 
+          "updatePosts": {
+            "type": "object",
+            "properties": {
+              "authorization": {
+                "type": "string",
+                "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9ib3JhZGU3QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoib21rYXIxMjMiLCJpYXQiOjE2NzgxMjM5NTIsImV4cCI6MTcwOTY4MTU1Mn0.aEMcfqvuyozvw7NJV-e6I1u7bMVlNjBaH-QJtq1-9Lc"
+              },
+              "id": {
+                "type": "string",
+                "example": "64065d00ea1dd494d43526e8"
+              },
+              "post": {
+                "type": "string",
+                "example": "Learn Node js and Angular Together."
+              }
+
+            }
+          }, 
+           "deletePosts": {
+            "type": "object",
+            "properties": {
+              "authorization": {
+                "type": "string",
+                "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9ib3JhZGU3QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoib21rYXIxMjMiLCJpYXQiOjE2NzgxMjM5NTIsImV4cCI6MTcwOTY4MTU1Mn0.aEMcfqvuyozvw7NJV-e6I1u7bMVlNjBaH-QJtq1-9Lc"
+              },
+              "id": {
+                "type": "string",
+                "example": "64065d00ea1dd494d43526e8"
+              }
+             
+
+            }
+          },    
+            "addComment": {
+            "type": "object",
+            "properties": {
+              "authorization": {
+                "type": "string",
+                "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9ib3JhZGU3QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoib21rYXIxMjMiLCJpYXQiOjE2NzgxMjM5NTIsImV4cCI6MTcwOTY4MTU1Mn0.aEMcfqvuyozvw7NJV-e6I1u7bMVlNjBaH-QJtq1-9Lc"
+              },
+              "id": {
+                "type": "string",
+                "example": "64065d00ea1dd494d43526e8"
+              },
+              "comment": {
+                "type": "string",
+                "example": "should we learn togther!."
+              }
+            }
+          },
+          "markComplete": {
+            "type": "object",
+            "properties": {
+              "authorization": {
+                "type": "string",
+                "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9ib3JhZGU3QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoib21rYXIxMjMiLCJpYXQiOjE2NzgxMjM5NTIsImV4cCI6MTcwOTY4MTU1Mn0.aEMcfqvuyozvw7NJV-e6I1u7bMVlNjBaH-QJtq1-9Lc"
+              },
+              "id": {
+                "type": "string",
+                "example": "64065d00ea1dd494d43526e8"
+              },
+              "is_complete": {
+                "type": "integer",
+                "example": 1
+              }
+            }
+          },
+          "Authorization": {
+            "type": "object",
+            "properties": {
+              "authorization": {
+                "type": "string",
+                "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9ib3JhZGU3QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoib21rYXIxMjMiLCJpYXQiOjE2NzgxMjM5NTIsImV4cCI6MTcwOTY4MTU1Mn0.aEMcfqvuyozvw7NJV-e6I1u7bMVlNjBaH-QJtq1-9Lc"
+              }
+            }
+          },
+          "login": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "oborade7@gmail.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "omkar123"
+                  }
+                  
+                },
+                "xml": {
+                  "name": "findbyquery"
+                }
+          },
+          "signup": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "isha2212@gmail.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "isha2212"
+                  },
+                  "userName": {
+                    "type": "string",
+                    "example": "isha22"
+                  }
+                  
+                },
+                "xml": {
+                  "name": "findbyquery"
+                }
+          },
+          "res":{
+                "message": "Data Fetched!!",
+                "data": []
+          },
+          "req":{
+                "collection": "string",
+                "filter": {}
+          }
+        
+        }
+   
+    }
+  }
+
+ 
