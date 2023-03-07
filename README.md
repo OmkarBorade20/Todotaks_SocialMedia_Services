@@ -1,7 +1,7 @@
 
 
 Swagger Url:https://todo-task-social-app.onrender.com/api-docs/#/
-# TodoTasks_SocailMedia_Services
+# TodoTasks SocailMedia Services
 TodoTasks_SocailMedia Contains all the apis which are developed using (Node.js,Express.js,MongoDb,Redis,JWT,Swagger-apiDocs,clustering) the code is organized properly so it can be used for production grade application. 
 
 what are covered
