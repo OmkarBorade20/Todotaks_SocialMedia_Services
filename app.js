@@ -8,7 +8,7 @@ const limitter=require('express-rate-limit')
 
 const router=require('./src/router/index')
 const mongo=require('./src/connections/mongodb/mongo')
-//const redis=require('./src/connections/redis/redis')
+const redis=require('./src/connections/Redis/redis')
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./src/swagger/swagger.json');
 
