@@ -1,7 +1,7 @@
 {
-  "name": "",
+  "name": "todo-task-social-app",
   "version": "1.0.0",
-  "description": "Social App created by omkar Borade",
+  "description": "todo-task-social-app created by omkar Borade",
   "main": "app.js",
   "scripts": {
     "dev": "nodemon app.js",
